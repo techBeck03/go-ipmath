@@ -29,16 +29,16 @@ type IP struct {
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/23")
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	newIP, err := ip.Add(256)
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	fmt.Println(newIP.String())
+if err != nil {
+    log.Println(err)
+    return
+}
+newIP, err := ip.Add(256)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(newIP.String())
 ```
 
 #### Output
@@ -51,16 +51,16 @@ ip, err := ipmath.NewIP("172.19.4.10/23")
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	newIP, err := ip.Add(256)
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	fmt.Println(newIP.String())
+if err != nil {
+    log.Println(err)
+    return
+}
+newIP, err := ip.Add(256)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(newIP.String())
 ```
 
 #### Output
@@ -73,16 +73,16 @@ ip, err := ipmath.NewIP("172.19.4.10/24")
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/23")
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	newIP, err := ip.Subtract(4)
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	fmt.Println(newIP.String())
+if err != nil {
+    log.Println(err)
+    return
+}
+newIP, err := ip.Subtract(4)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(newIP.String())
 ```
 
 #### Output
@@ -95,16 +95,16 @@ ip, err := ipmath.NewIP("172.19.4.10/23")
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	newIP, err := ip.Add(30)
-	if err != nil {
-		log.Println(err)
-        return
-	}
-	fmt.Println(newIP.String())
+if err != nil {
+    log.Println(err)
+    return
+}
+newIP, err := ip.Add(30)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(newIP.String())
 ```
 
 #### Output
