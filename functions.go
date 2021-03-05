@@ -82,7 +82,7 @@ func (i *IP) Difference(ip net.IP) int {
 	ipB := ip.To4()
 	ipBBit := uint32(ipB[3]) | uint32(ipB[2])<<8 | uint32(ipB[1])<<16 | uint32(ipB[0])<<24
 
-	return int(ipABit) - int(ipBBit)
+	return int(ipBBit) - int(ipABit)
 }
 
 // Dec decrements IP address by one
