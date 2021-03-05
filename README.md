@@ -99,7 +99,7 @@ if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Add(30)
+newIP, err := ip.Subtract(30)
 if err != nil {
     log.Println(err)
     return
