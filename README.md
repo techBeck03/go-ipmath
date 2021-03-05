@@ -16,12 +16,12 @@ type IP struct {
 - `Dec`: Decrements IP address by 1
 - `Add`: Increments IP address by provided increment
 - `Subtract`: Decrements IP address by provided increment
-- `Difference`: Returns the signed int difference of objectIP and provided IP
+- `Difference`: Returns the signed int difference of object IP and provided IP
 - `EQ`: Checks if base object IP and provided IP are equal
 - `GT`: Checks if base object IP is greater than provided IP
 - `LT`: Checks if base object IP is less than provided IP
-- `GT`: Checks if base object IP is greater than or equal to provided IP
-- `GT`: Checks if base object IP is less than or equal to provided IP
+- `GTE`: Checks if base object IP is greater than or equal to provided IP
+- `LTE`: Checks if base object IP is less than or equal to provided IP
 
 ## Example Usage
 
@@ -99,7 +99,7 @@ if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Add(30)
+newIP, err := ip.Subtract(30)
 if err != nil {
     log.Println(err)
     return
