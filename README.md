@@ -258,7 +258,7 @@ true
 false
 ```
 
-### LT Comparison
+### LTE Comparison
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
