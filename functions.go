@@ -26,7 +26,7 @@ func NewIP(cidrAddr string) (newIP IP, err error) {
 }
 
 // Add increments IP address by supplied increment value
-func (i *IP) Add(incr uint32) (ret net.IP, err error) {
+func (i *IP) Add(incr int) (ret net.IP, err error) {
 	ip := i.Address.To4()
 	if ip == nil {
 		return ret, fmt.Errorf("%s is not a valid IP address", ip.String())
