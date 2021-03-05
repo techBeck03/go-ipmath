@@ -128,8 +128,8 @@ fmt.Println(ip.Difference(net.ParseIP("172.19.4.25")))
 #### Output
 
 ```bash
-5
--15
+-5
+15
 ```
 
 ### Increment
