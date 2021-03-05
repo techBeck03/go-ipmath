@@ -39,8 +39,10 @@ func (i *IP) Add(incr uint32) (ret net.IP, err error) {
 	if newIP == nil {
 		return ret, fmt.Errorf("%s cannot be incremented by %v", i.Address.String(), incr)
 	}
-	if !i.Network.Contains(newIP) {
-		return newIP, fmt.Errorf("%s is not in CIDR network %s", newIP.String(), i.Network.String())
+	if i.Network != nil {
+		if !i.Network.Contains(newIP) {
+			return newIP, fmt.Errorf("%s is not in CIDR network %s", newIP.String(), i.Network.String())
+		}
 	}
 	if bytes.Compare(i.Address, newIP) > 0 {
 		return newIP, fmt.Errorf("Adding %v to %s causes address wrap", incr, i.Address.String())
@@ -66,8 +68,10 @@ func (i *IP) Subtract(incr int) (ret net.IP, err error) {
 	if newIP == nil {
 		return ret, fmt.Errorf("%s cannot be incremented by %v", i.Address.String(), incr)
 	}
-	if !i.Network.Contains(newIP) {
-		return newIP, fmt.Errorf("%s is not in CIDR network %s", newIP.String(), i.Network.String())
+	if i.Network != nil {
+		if !i.Network.Contains(newIP) {
+			return newIP, fmt.Errorf("%s is not in CIDR network %s", newIP.String(), i.Network.String())
+		}
 	}
 	if bytes.Compare(newIP, i.Address) > 0 {
 		return newIP, fmt.Errorf("Subtracting %v to %s causes address wrap", incr, i.Address.String())
