@@ -138,7 +138,12 @@ func (i *IP) ToCIDRString() (string, error) {
 
 // Clone clones the ipmath base object
 func (i *IP) Clone() IP {
-	cidrString, _ := i.ToCIDRString()
-	newIP, _ := NewIP(cidrString)
-	return newIP
+	if i.Network != nil {
+		cidrString, _ := i.ToCIDRString()
+		newIP, _ := NewIP(cidrString)
+		return newIP
+	}
+	return IP{
+		Address: net.ParseIP(i.Address.String()),
+	}
 }
