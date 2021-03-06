@@ -135,3 +135,10 @@ func (i *IP) ToCIDRString() (string, error) {
 	prefix, _ := i.Network.Mask.Size()
 	return fmt.Sprintf("%s/%s", i.Address.String(), strconv.Itoa(prefix)), nil
 }
+
+// Clone clones the ipmath base object
+func (i *IP) Clone() IP {
+	cidrString, _ := i.ToCIDRString()
+	newIP, _ := NewIP(cidrString)
+	return newIP
+}

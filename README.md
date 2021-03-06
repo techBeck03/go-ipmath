@@ -215,6 +215,10 @@ fmt.Println(ip.ToIPString())
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
+if err != nil {
+    log.Println(err)
+    return
+}
 err = ip.Inc()
 if err != nil {
     log.Println(err)
@@ -432,4 +436,29 @@ fmt.Println(ip.LTE(net.ParseIP("172.19.4.12")))
 true
 false
 true
+```
+
+### Clone
+
+```golang
+ip, err := ipmath.NewIP("172.19.4.10/24")
+if err != nil {
+    log.Println(err)
+    return
+}
+clonedIP := ip.Clone()
+err = clonedIP.Inc()
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Printf("ip       = %s\n", ip.ToIPString())
+fmt.Printf("clonedIP = %s", clonedIP.ToIPString())
+```
+
+#### Output
+
+```bash
+ip       = 172.19.4.10
+clonedIP = 172.19.4.11
 ```
