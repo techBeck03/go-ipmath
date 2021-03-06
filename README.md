@@ -53,7 +53,7 @@ ipObj := ipmath.IP{
 - `GTE`: Checks if base object IP is greater than or equal to provided IP
 - `LTE`: Checks if base object IP is less than or equal to provided IP
 
-## Example Usage
+## Detailed Examples
 
 ### Addition
 
@@ -63,18 +63,52 @@ if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Add(256)
+err = ip.Add(256)
 if err != nil {
     log.Println(err)
     return
 }
-fmt.Println(newIP.String())
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
 ```
 
 #### Output
 
 ```bash
 172.19.5.10
+172.19.5.10/23
+```
+
+### Addition (without Network)
+
+```golang
+ip := ipmath.IP{
+    Address: net.ParseIP("172.19.4.10"),
+}
+err := ip.Add(256)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+#### Output
+
+```bash
+172.19.5.10
+Unable to create cidr string because `Network` is undefined
 ```
 
 ### Addition with Errors (Requires `Network` be defined)
@@ -85,12 +119,12 @@ if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Add(256)
+err = ip.Add(256)
 if err != nil {
     log.Println(err)
     return
 }
-fmt.Println(newIP.String())
+fmt.Println(ip.ToIPString())
 ```
 
 #### Output
@@ -102,23 +136,57 @@ fmt.Println(newIP.String())
 ### Subtraction
 
 ```golang
-ip, err := ipmath.NewIP("172.19.4.10/23")
+ip, err := ipmath.NewIP("172.19.4.10/24")
 if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Subtract(4)
+err = ip.Subtract(4)
 if err != nil {
     log.Println(err)
     return
 }
-fmt.Println(newIP.String())
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
 ```
 
 #### Output
 
 ```bash
 172.19.4.6
+172.19.4.6/24
+```
+
+### Subtraction (without Network)
+
+```golang
+ip := ipmath.IP{
+    Address: net.ParseIP("172.19.4.10"),
+}
+err := ip.Subtract(4)
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+#### Output
+
+```bash
+172.19.4.6
+Unable to create cidr string because `Network` is undefined
 ```
 
 ### Subtraction with Errors (Requires `Network` be defined)
@@ -129,18 +197,119 @@ if err != nil {
     log.Println(err)
     return
 }
-newIP, err := ip.Subtract(30)
+err = ip.Subtract(30)
 if err != nil {
     log.Println(err)
     return
 }
-fmt.Println(newIP.String())
+fmt.Println(ip.ToIPString())
 ```
 
 #### Output
 
 ```bash
 2021/03/04 15:57:46 172.19.3.236 is not in CIDR network 172.19.4.0/24
+```
+
+### Increment
+
+```golang
+ip, err := ipmath.NewIP("172.19.4.10/24")
+err = ip.Inc()
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+#### Output
+
+```bash
+172.19.4.11
+172.19.4.11/24
+```
+
+### Increment (without Network)
+
+```golang
+ip := ipmath.IP{
+    Address: net.ParseIP("172.19.4.10"),
+}
+err := ip.Inc()
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+#### Output
+
+```bash
+172.19.4.11
+Unable to create cidr string because `Network` is undefined
+```
+
+### Decrement
+
+```golang
+ip, err := ipmath.NewIP("172.19.4.10/24")
+if err != nil {
+    log.Println(err)
+    return
+}
+err = ip.Dec()
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+### Decrement (without Network)
+
+```golang
+ip := ipmath.IP{
+    Address: net.ParseIP("172.19.4.10"),
+}
+err := ip.Dec()
+if err != nil {
+    log.Println(err)
+    return
+}
+fmt.Println(ip.ToIPString())
+cidrString, err := ip.ToCIDRString()
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println(cidrString)
+```
+
+#### Output
+
+```bash
+172.19.4.9
+Unable to create cidr string because `Network` is undefined
 ```
 
 ### Difference
@@ -160,50 +329,6 @@ fmt.Println(ip.Difference(net.ParseIP("172.19.4.25")))
 ```bash
 -5
 15
-```
-
-### Increment
-
-```golang
-ip, err := ipmath.NewIP("172.19.4.10/24")
-if err != nil {
-    log.Println(err)
-    return
-}
-newIP, err := ip.Inc()
-if err != nil {
-    log.Println(err)
-    return
-}
-fmt.Println(newIP.String())
-```
-
-#### Output
-
-```bash
-172.19.4.11
-```
-
-### Decrement
-
-```golang
-ip, err := ipmath.NewIP("172.19.4.10/24")
-if err != nil {
-    log.Println(err)
-    return
-}
-newIP, err := ip.Dec()
-if err != nil {
-    log.Println(err)
-    return
-}
-fmt.Println(newIP.String())
-```
-
-#### Output
-
-```bash
-172.19.4.9
 ```
 
 ### EQ Comparison
