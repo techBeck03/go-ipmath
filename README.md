@@ -3,7 +3,7 @@
 ## Simple IP math functions for golang<br/><br/>
 
 ### Base object<br/><br/>
-```
+```golang
 type IP struct {
 	Address net.IP
 	Network *net.IPNet
