@@ -10,6 +10,36 @@ type IP struct {
 }
 ```
 
+### Creating base object<br/><br/>
+
+#### New from CIDR string
+
+```golang
+ip, err := ipmath.NewIP("172.19.4.10/24")
+```
+
+#### Existing IP and Network object
+
+```golang
+ip, net, _ := net.ParseCIDR("172.19.4.10/24")
+
+ipObj := ipmath.IP{
+    Address: ip,
+    Network: net,
+}
+```
+
+#### Existing IP object only
+
+```golang
+net := net.ParseIP("172.19.4.10")
+
+ipObj := ipmath.IP{
+    Address: ip,
+}
+```
+
+
 ### Supported Operations<br/><br/>
 
 - `Inc`: Increments IP address by 1
@@ -47,7 +77,7 @@ fmt.Println(newIP.String())
 172.19.5.10
 ```
 
-### Addition with Errors
+### Addition with Errors (Requires `Network` be defined)
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
@@ -91,7 +121,7 @@ fmt.Println(newIP.String())
 172.19.4.6
 ```
 
-### Subtraction with Errors
+### Subtraction with Errors (Requires `Network` be defined)
 
 ```golang
 ip, err := ipmath.NewIP("172.19.4.10/24")
