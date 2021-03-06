@@ -42,16 +42,17 @@ ipObj := ipmath.IP{
 
 ### Supported Operations<br/><br/>
 
-- `Inc`: Increments IP address by 1
-- `Dec`: Decrements IP address by 1
 - `Add`: Increments IP address by provided increment
 - `Subtract`: Decrements IP address by provided increment
+- `Inc`: Increments IP address by 1
+- `Dec`: Decrements IP address by 1
 - `Difference`: Returns the signed int difference of object IP and provided IP
 - `EQ`: Checks if base object IP and provided IP are equal
 - `GT`: Checks if base object IP is greater than provided IP
 - `LT`: Checks if base object IP is less than provided IP
 - `GTE`: Checks if base object IP is greater than or equal to provided IP
 - `LTE`: Checks if base object IP is less than or equal to provided IP
+- `Clone`: Clones the base object into a new base object
 
 ## Detailed Examples
 
